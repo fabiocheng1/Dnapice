@@ -1,4 +1,3 @@
-
 from random import *
 import time
 import os
@@ -6,26 +5,20 @@ from colors import *
 from Bio import SeqIO
 
 
-# nome_arquivo = input("Digite o nome do arquivo:")
-
-#                            nome do arquivo   tipo de arquivo
-
-
-
-
+os.system("cls")
 
 codigos_geneticos = {
-    "1": "sequence.fasta" ,
-    "2": "sequence2.fasta" ,
-    "3": "sequence3.fasta" 
+    1: "sequence.fasta" ,
+    2: "sequence2.fasta" ,
+    3: "sequence3.fasta" 
 
 }
 
 nomes = {
 
-    "1": "arenarius ratus" ,
-    "2": "mycoplasm pneumonia" ,
-    "3": "mycoplasma genitalium" 
+    1: "arenarius ratus" ,
+    2: "mycoplasm pneumonia" ,
+    3: "mycoplasma genitalium" 
 
 }
 
@@ -33,14 +26,30 @@ nomes = {
 
 
 def sequencia_real():
-    print(nomes)
+    os.system("cls")
+    print(f"""{cores["ciano"]}1- Arenarius Ratus (formiga)
+2- Mycoplasm Pneumonia (bactéria da pneumonia)
+3- Mycoplasm Genitalium (bactéria parasita que vive na região genital dos primatas)""")
     
     while True:
         try:
-            x = input("Escolha o número do especime: ")
-            break
+            
+            x = int(input("\nEscolha o número do espécime: "))
+            if x > 3 or x < 1:
+                print("Erro! Valor não encontrado")
+                time.sleep(2)
+                os.system("cls")
+            else:
+                break
+
         except ValueError:
             print("Valor inválido!")
+            time.sleep(2)
+            os.system("cls")
+            print(f"""{cores["ciano"]}1- Arenarius Ratus (formiga)
+2- Mycoplasm Pneumonia (bactéria da pneumonia)
+3- Mycoplasm Genitalium (bactéria parasita que vive na região genital dos primatas)""")
+    
     
     for sequencia in SeqIO.parse(codigos_geneticos[x],"fasta"):
         a = 0
@@ -81,8 +90,11 @@ def sequencia_real():
             else:
                 perc_a = perc_t = perc_c = perc_g = 0
 
-    # Exibe as porcentagen
+    # Exibe as porcentagens
         print(f"|{cores['vermelho']}Porcentagem A: {perc_a:.2f}% | Porcentagem T: {perc_t:.2f}% | Porcentagem C: {perc_c:.2f}% | Porcentagem G: {perc_g:.2f}%{cores['restaura']}")
+        clear = int(input("Deseja limpar? (1-Sim)(2-Não)"))
+        if clear == 1:
+            os.system('cls')
 
 def sequencia_aleatoria(tamanho):
     a = 0
@@ -131,76 +143,119 @@ bases = {"A":"T" , "T": "A" , "C":"G" , "G":"C"}
 
 
 
-print('''
-      BEM VINDO
-      
-      ''')
+while True:
+    
+    os.system("cls")
+
+    print(f'''  
+    {cores["verde"]}
+    ____  ______ __  __     __      _______ _   _ _____   ____  
+    |  _ \|  ____|  \/  |    \ \    / /_   _| \ | |  __ \ / __ \ 
+    | |_) | |__  | \  / |______ \  / /  | | |  \| | |  | | |  | |
+    |  _  |  __| | |\/| |______\ \/ /   | | | . ` | |  | | |  | |
+    | |_) | |____| |  | |       \  /   _| |_| |\  | |__| | |__| |
+    |____/|______|_|  |_|        \/   |_____|_| \_|_____/ \____/ 
+                                                              
+                                                              
+
+
+
+
+
+        ''')
                 
     
-while True:
-    try:
-        pergunta = input("1- Gerar fita aleatória\n2- Gerar fita existente")
-        break
-    except ValueError:
-        print("Valor inválido!")
-
-
-if pergunta == "1":
     while True:
         try:
-            tamanho = int(input(f"{cores['azul']} Digite o tamanho da bactéria: {cores['restaura']}"))  # Solicita o tamanho da bactéria
-            break
-        
-        except ValueError:
-            print("Erro!Valor inválido")
-            time.sleep(2)
-            os.system('cls')
-    
-    while True:
-        try:
-            resp = int(input(f"""{cores["vermelho"]}1- Imprimir toda a sequência de DNA{cores["verde"]} / 2- Número de fitas determinado {cores["magenta"]}/ 3- Encerrar {cores["restaura"]}"""))
-            break
-        except ValueError:
-            os.system('cls')
-        
-    while True:
-        try:
-            if resp == 1:
-                sequencia_aleatoria(tamanho)
-            elif resp == 2:
-                continuar = 0
-                while continuar != 3:
-                    fita = int(input(f"{cores["amarelo"]}Quantas fitas? {cores["verde"]}"))
-                    if fita > tamanho:
-                        print("Erro! Número de fitas maior que o informado")
-                        time.sleep(2)
-                        os.system('cls')
-                    elif fita <= tamanho:
-                        sequencia_aleatoria(fita)
-                        while True:
-                            try:
-                                continuar = int(input(f"{cores["amarelo"]}Deseja continar? (3 Para acabar e 1 Para continuar)"))
-                                break
-                            except ValueError:
-                                print("Erro!")
-                                time.sleep(2)
-                                os.system('cls')
-                        time.sleep(2)
-                        os.system('cls')
+            pergunta = int(input(f"{cores["verde"]}1- Gerar fita aleatória\n2- Mostrar fita existente \n"))
             break
         except ValueError:
             print("Valor inválido!")
             time.sleep(2)
-            os.system('cls')
+            os.system("cls")
+
+
+    if pergunta == 1:
+        os.system("cls")
+        while True:
+            try:
+                tamanho = int(input(f"{cores['azul']}Digite o tamanho da bactéria: {cores['restaura']}"))  # Solicita o tamanho da bactéria
+                break
+        
+            except ValueError:
+                print("Erro!Valor inválido")
+                time.sleep(2)
+                os.system('cls')
+    
+        while True:
+            try:
+                resp = int(input(f"""{cores["vermelho"]}
+    1- Imprimir toda a sequência de DNA{cores["verde"]}
+    2- Número de fitas determinado {cores["magenta"]}
+    3- Encerrar {cores["restaura"]}"""))
+                break
+            except ValueError:
+                os.system('cls')
+        
+        while True:
+            
+            try:
+                
+                if resp == 1:
+                    sequencia_aleatoria(tamanho)
+                elif resp == 2:
+                    continuar = 2
+                    while continuar == 2:
+                        fita = int(input(f"{cores["amarelo"]}Quantas fitas de DNA? {cores["verde"]}"))
+                        if fita > tamanho or fita <= 0:
+                            print("Erro! Número de fitas não condiz com o informado")
+                            time.sleep(2)
+                            os.system('cls')
+                        elif fita <= tamanho:
+                            sequencia_aleatoria(fita)
+                            while True:
+                                try:
+                                    continuar = int(input(f"{cores["amarelo"]}Deseja continuar?(1-Acabar)(2-Continuar)"))
+                                    if continuar == 1:
+                                        controle1 = True
+
+                                        break
+                                    elif continuar == 2:
+                                        break
+                                    
+                                except ValueError:
+                                    print("Erro!")
+                                    time.sleep(2)
+                                    os.system('cls')
+                            time.sleep(2)
+                            os.system('cls')
+                break
+            except ValueError:
+                print("Valor inválido!")
+                time.sleep(2)
+                os.system('cls')
 
 
 
     
 
 
-elif pergunta == "2":
-    sequencia_real()
+    elif pergunta == 2:
+        sequencia_real()
     
+    while True:
+        try:
+            repetir = int(input("Deseja repetir o programa? (1-Sim)(2-Não) "))
+            break
+        except ValueError:
+            print("Valor inválido")
 
+    if repetir == 2:
+        break
 
+    time.sleep(2)
+    os.system('cls')
 
+    repetir = 0
+    resp = 0 
+    continuar = 0
