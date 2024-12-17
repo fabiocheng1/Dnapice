@@ -147,7 +147,12 @@ while True:
     
     os.system("cls")
 
-    print(f'''  
+    
+                
+    
+    while True:
+        try:
+            print(f'''  
     {cores["verde"]}
     ____  ______ __  __     __      _______ _   _ _____   ____  
     |  _ \|  ____|  \/  |    \ \    / /_   _| \ | |  __ \ / __ \ 
@@ -163,12 +168,14 @@ while True:
 
 
         ''')
-                
-    
-    while True:
-        try:
             pergunta = int(input(f"{cores["verde"]}1- Gerar fita aleatória\n2- Mostrar fita existente \n"))
-            break
+            if pergunta >= 3 or pergunta <= 0:
+                print("Valor inválido!")
+                time.sleep(2)
+                os.system("cls")
+                continue
+            else:
+                break
         except ValueError:
             print("Valor inválido!")
             time.sleep(2)
