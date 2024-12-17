@@ -26,6 +26,8 @@ nomes = {
 
 
 def sequencia_real():
+    teste = 0
+    
     os.system("cls")
     print(f"""{cores["ciano"]}1- Arenarius Ratus (formiga)
 2- Mycoplasm Pneumonia (bactéria da pneumonia)
@@ -66,7 +68,21 @@ def sequencia_real():
         
         for i in range(len(fita1)):
             
-            print(f"{cores['vermelho']}|{fita1[i]}{cores['branco']} ---{cores['verde']} {fita2[i]}|")
+            
+
+            if teste == 0:
+                print(f"|{cores['vermelho']}{fita1[i]}{cores['branco']}-----{cores['verde']}{fita2[i]}|")
+                teste += 1
+            elif teste == 1:
+                print(f" \{cores['vermelho']}{fita1[i]}{cores['branco']}---{cores['verde']}{fita2[i]}/")
+                teste += 1
+            elif teste == 2:
+                print(f"  |{cores['vermelho']}{fita1[i]}{cores['branco']}-{cores['verde']}{fita2[i]}|")
+                teste += 1
+            elif teste == 3:
+                print(f" /{cores['vermelho']}{fita1[i]}{cores['branco']}---{cores['verde']}{fita2[i]}\ ")
+                teste = 0
+
             if fita1[i] == "A":
                 a += 1
                 t += 1
@@ -101,6 +117,8 @@ def sequencia_aleatoria(tamanho):
     t = 0
     c = 0
     g = 0
+    
+    teste = 0
       
     total_bases = 0
       
@@ -124,7 +142,18 @@ def sequencia_aleatoria(tamanho):
         
         # Exibe a base e a ligação com a cor
         ligacao = bases[base]
-        print(f"|{cores['vermelho']}{base}{cores['branco']}--{cores['verde']}{ligacao}|")
+        if teste == 0:
+            print(f"|{cores['vermelho']}{base}{cores['branco']}-----{cores['verde']}{ligacao}|")
+            teste += 1
+        elif teste == 1:
+            print(f" \{cores['vermelho']}{base}{cores['branco']}---{cores['verde']}{ligacao}/")
+            teste += 1
+        elif teste == 2:
+            print(f"  |{cores['vermelho']}{base}{cores['branco']}-{cores['verde']}{ligacao}|")
+            teste += 1
+        elif teste == 3:
+            print(f" /{cores['vermelho']}{base}{cores['branco']}---{cores['verde']}{ligacao}\ ")
+            teste = 0
 
     # Calcula as porcentagens de cada base
     if total_bases > 0:
